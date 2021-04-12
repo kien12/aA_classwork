@@ -40,23 +40,34 @@ end
 
 
 class IntSet
+
+    attr_reader :store, :num_buckets 
+
   def initialize(num_buckets = 20)
     @store = Array.new(num_buckets) { Array.new }
+    @num_buckets = num_buckets
   end
 
   def insert(num)
+    # bucket = num % num_buckets
+    return false if include?(num)
+    # @store[num] = true if !@store[num]
+    self[num] << num 
   end
 
   def remove(num)
+    self[num].delete(num)
   end
 
   def include?(num)
+    self[num].include?(num)
   end
 
   private
 
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
+    @store[num % num_buckets]
   end
 
   def num_buckets
