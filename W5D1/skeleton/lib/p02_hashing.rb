@@ -4,6 +4,11 @@ end
 
 class Array
   def hash
+    arr = [] 
+    self.each do |ele|
+        arr << ele.hash 
+    end
+    arr 
   end
 end
 
