@@ -3,6 +3,7 @@ def eighties_b_movies
   # 3 and 5 (inclusive).
   # Show the id, title, year, and score.
 
+  Movie.select(:title)
 end
 
 def bad_years
