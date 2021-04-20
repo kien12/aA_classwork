@@ -5,10 +5,21 @@ require 'active_support/inflector'
 
 class SQLObject
   def self.columns
-    # ...
+    return @columns if @columns
+    column = DBConnection.execute2(<<-SQL).first
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+      LIMIT
+        0
+    SQL
+    column.map!(&:to_s)
+    @columns = column
   end
 
   def self.finalize!
+    
   end
 
   def self.table_name=(table_name)
