@@ -1,0 +1,15 @@
+<h1>New User</h1>
+
+# <%#= render "shared/errors" %>
+
+<form action="<%= users_url %>" method="post">
+
+  <label for="username">Username:</label>
+  <input type="text" name="user[username]" id="username" value="<%= @user.username %>">
+  
+  <label for="password">Password: <input id="password" name="user[password]" type="password" value="<%= @user.password %>">
+    </label>
+
+  <input type="submit" value="Create User"> 
+
+    </form>
