@@ -15,11 +15,11 @@ function sum(...arguments) {
 }
 
 Function.prototype.myBind = function(ctx) {
-    const func = this;
+    const that = this;
     const bindArgs = Array.from(arguments).slice(1);
-    return function _bound() {
+    return function() {
         const callArgs = Array.from(arguments);
-        return func.apply(ctx, bindArgs.concat(callArgs));
+        return that.apply(ctx, bindArgs.concat(callArgs));
     };
 };
 
@@ -67,12 +67,27 @@ Function.prototype.curryApply = function(numArgs) {
 
     function _curried(num) {
         numbers.push(num);
-        if (numberes.length === numArgs) {
+        if (numbers.length === numArgs) {
             func.apply(null, numbers);
         } else {
             return _curried;
         }
     }
     return _curried;
+};
+
+
+Function.prototype.curry2 = function (nArg) {
+    const argArray = [];
+    const _curriedFn = (arg) => {
+        argArray.push(arg);
+        if (argArray.length === nArg) {
+            // spreading the array into individual arguments
+            return this(...argArray);
+        } else {
+            return _curriedFn;
+        }
+    };
+    return _curriedFn;
 };
 
