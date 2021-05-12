@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.width = 500;
     canvas.height = 500;
     const ctx = canvas.getContext("2d");
-    // window.ctx = ctx;
+    window.ctx = ctx;
     const game = new Game();
+    // window.game = game
     new GameView(game, ctx).start();
 })
 

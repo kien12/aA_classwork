@@ -17,8 +17,10 @@ MovingObject.prototype.draw = function (ctx) {
 }
 
 MovingObject.prototype.move = function () {
-    this.pos[0] += this.vel[0]
-    this.pos[1] += this.vel[1]
+    let offsetX = this.vel[0]
+    let offsetY = this.vel[1]
+    this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY]
+    console.log(this.pos, "this is the position")
 }
 
 

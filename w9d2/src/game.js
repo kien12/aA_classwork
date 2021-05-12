@@ -20,13 +20,25 @@ Game.prototype.randomPosition = function() {
 
 Game.prototype.addAsteroids = function() {
     for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
-         this.asteroids.push(new Asteroid( { pos: this.randomPosition} ));
+        this.asteroids.push(new Asteroid( { pos: this.randomPosition()} ));
     }
+    console.log(this.asteroids)
 }
 
 Game.prototype.draw = function(ctx) {
-    ctx.clearRect();
+    ctx.clearRect(0, 0, 500, 500);
     for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
-        this.asteroids[i].move;
+        this.asteroids[i].draw(ctx);
     }
 }
+
+Game.prototype.moveObjects = function () {
+    console.log(this, "Testing")
+    for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
+        console.log(this.asteroids[i])
+        let asteroid = this.asteroids[i];
+        asteroid.move();
+    }
+}
+
+module.exports = Game
