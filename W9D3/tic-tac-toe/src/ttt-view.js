@@ -14,7 +14,35 @@ class View {
     }));
   }
 
-  makeMove($square) {}
+  makeMove($square) {
+    const pos = $square.data("pos");
+    const currentPlayer = this.game.currentPlayer;
+    try {
+      this.game.playMove(pos);
+    }
+    catch(error) {
+      alert('this ' + error.message.toLowerCase());
+      return;
+    }
+    $square.addClass(currentPlayer);
+
+    if (this.game.isOver()) {
+      this.$el.off("click");
+      this.$el.addClass("game over");
+
+      const winner = this.game.winner();
+      const $figcaption = $("<figcaption>");
+
+      if (winner) {
+        this.$el.addClass(`winner ${winner}`);
+        $figcaption.html(`You win ${winner}!`);
+      } else {
+        $figcaption.html("draw");
+      }
+
+      this.$el.append($figcaption);
+    }
+  }
 
   setupBoard() {
     const $ul = $('<ul>');
